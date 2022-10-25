@@ -1,0 +1,141 @@
+from cgitb import text
+from logging import exception
+import tkinter
+from tkinter import *
+
+root = Tk()
+root.geometry("720x780")
+root.title("Calculator")
+
+def click(event):
+    text = event.widget.cget("text")
+    print(text)                    #to print the text or num we click on console screen
+ 
+    if text == "=":
+        if scvalue.get().isdigit():
+            value = int(scvalue.get())
+        else:
+            try:
+                value = eval(screen.get())
+
+            except Exception as e:
+                print(e)
+                value = "Error"
+        
+        scvalue.set(value)
+        screen.update()
+
+    elif text == "c":
+        scvalue.set("")
+        screen.update()
+
+    else:
+        #to display values on screen of calculator
+        scvalue.set(scvalue.get() + text)
+        screen.update()
+
+
+scvalue = StringVar()
+scvalue.set("")
+
+Label(root, text="My Calculator", font="TimesNewRoman 20 bold", background="grey").pack(fill=X)
+
+screen = Entry(root, textvariable=scvalue, font="Algerian 20 bold", relief=SUNKEN)
+screen.pack(fill=X, pady=10, padx=15)
+
+#Frame-1
+f = Frame(root, background="grey")
+
+b=Button(f, text="7", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20  )
+b.bind("<Button-1>", click)
+
+b=Button(f, text="8", font="Algerian 20 bold")
+b.pack(side=LEFT,padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="9", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="/", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+f.pack()
+
+
+#Frame-1
+f = Frame(root, background="grey")
+
+b=Button(f, text="4", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20  )
+b.bind("<Button-1>", click)
+
+b=Button(f, text="5", font="Algerian 20 bold")
+b.pack(side=LEFT,padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="6", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="*", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+f.pack()
+
+
+#Frame-1
+f = Frame(root, background="grey")
+
+b=Button(f, text="1", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20  )
+b.bind("<Button-1>", click)
+
+b=Button(f, text="2", font="Algerian 20 bold")
+b.pack(side=LEFT,padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="3", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="+", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+f.pack()
+
+f = Frame(root, background="grey")
+
+b=Button(f, text="c", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20  )
+b.bind("<Button-1>", click)
+
+b=Button(f, text="0", font="Algerian 20 bold")
+b.pack(side=LEFT,padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="%", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+
+b=Button(f, text="-", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20)
+b.bind("<Button-1>", click)
+f.pack()
+
+f = Frame(root, background="grey")
+
+b=Button(f, text="=", font="Algerian 20 bold")
+b.pack(side=LEFT, padx=20, pady=20  )
+b.bind("<Button-1>", click)
+
+f.pack()
+
+
+
+
+
+root.mainloop()
