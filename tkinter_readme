@@ -1,0 +1,120 @@
+-------------------------------------------Tkinter--------------------------------
+
+import tkinter
+from tkinter import *
+
+root = TK() ----create basic layout
+root.geometry("720x479")------to give size of layout
+root.minsize(280,280)
+root.maxsize(780,780)
+
+root.mainloop()----------keeps the data within layout
+
+
+---------------------------------------------------------------------------
+l = Label(root, text="", padx= , pady= , bg= , font= , relief =)
+l.pack(fill= X, Y, padx, pady)
+
+
+
+-------------------------------------------------------------------------
+f = Frame(root, text="")
+f.pack()
+
+----------------------------------------------How to Add Image------------------------
+
+img = Image.open("1.jpg")
+img2 = ImageTk.PhotoImage(image=img)
+l = Label(root, image=img2).pack()
+
+
+-----------------------------------------------Scroll Bar---------------------------------
+There are two conditions to make a scroll bar
+
+1. widget(vscrollcommand= scrollbar.set)
+2. scrollbar.config(command=widget.yviewx)
+
+
+scrollbar = Scrollbar(root)
+scrollbar.pack(side=RIGHT, fill=Y)
+list_box = Listbox(root, yscrollcommand=scrollbar.set)
+
+for i in range(355):
+    list_box.insert(END, f"Item no {i}")
+
+list_box.pack()
+scrollbar.config(command=list_box.yview)
+
+
+----------------------------Status Bar with Changing status from read to busy to ready----------------------
+def upload():
+    status_var.set("Busy..........")
+    sbar.update()
+    import time
+    time.sleep(2)
+    status_var.set("Ready")
+
+status_var = StringVar()
+status_var.set("Ready")
+sbar = Label(root, textvariable=status_var, relief=SUNKEN, anchor="w")
+sbar.pack(side=BOTTOM, fill=X)
+
+Button(root, text="Upload Data", command=upload).pack()
+
+
+
+
+------------------------------------------------Classes and Objects---------------------
+
+root is replaced by self in initializer
+root is replaced by window for function calling.S
+
+
+class GUI(Tk):
+    def __init__(self):
+        #calling the constructor of init method, which is automaticl ly called when w eare using root method
+        super().__init__()
+        self.geometry("720x480")  
+
+
+
+    def status(self):
+        self.var = StringVar()
+        self.var.set("Ready")
+        self.statusbar = Label(self, textvariable=self.var, relief = SUNKEN, anchor="w")
+        self.statusbar.pack(side=BOTTOM, fill=X)
+    
+    def clickme(self):
+        self.var.set("Busy...")
+        self.statusbar.update()
+        import time
+        time.sleep(2)
+        self.var.set("Be Ready")
+
+    def create_btn(self):
+        Button(self, text="Click Me", command=self.clickme).pack()
+
+
+if __name__== '__main__':
+    #window is working same as root
+    window = GUI()
+    window.status()
+    window.create_btn()
+    window.clickme()
+    window.mainloop()       
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
